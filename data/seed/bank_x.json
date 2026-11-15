@@ -1,0 +1,45 @@
+{
+  "notice": "FICTIONAL DATA. 'Bank X' is not a real bank. No asset, provider, owner, recovery figure or risk rating here describes any real institution. Recovery figures are placeholders, not recommendations.",
+  "organisation": {"name": "Bank X (fictional)", "is_fictional": true},
+  "services": [
+    {"code": "SVC-CBS", "name": "Core banking transactions", "criticality": 5,
+     "description": "Account access, deposits, transfers and postings",
+     "business_owner": "Head of Retail Operations (role)", "technical_owner": "Core Banking Platform Lead (role)",
+     "mtd_hours": 4, "rto_hours": 2, "rpo_minutes": 15, "requirements_approved": true, "depends_on": []},
+    {"code": "SVC-PAY", "name": "Electronic payments", "criticality": 5,
+     "description": "Payment processing, transaction switching and interbank connectivity",
+     "business_owner": "Head of Payments (role)", "technical_owner": "Payments Platform Lead (role)",
+     "mtd_hours": 2, "rto_hours": 1, "rpo_minutes": 5, "requirements_approved": true, "depends_on": ["SVC-CBS"]},
+    {"code": "SVC-ATM", "name": "ATM services", "criticality": 4,
+     "description": "ATM availability, authorisation and cash withdrawal",
+     "business_owner": "Head of Channels (role)", "technical_owner": "ATM Channel Lead (role)",
+     "mtd_hours": 8, "rto_hours": 4, "rpo_minutes": 30, "requirements_approved": true, "depends_on": ["SVC-PAY", "SVC-CBS"]}
+  ],
+  "assets": [
+    {"code": "A01", "name": "Core banking application cluster", "type": "Application server", "site": "Primary DC", "criticality": 5, "owner": "Core Banking Platform Lead (role)", "used_by": ["SVC-CBS"]},
+    {"code": "A02", "name": "Core banking database (primary)", "type": "Database", "site": "Primary DC", "criticality": 5, "owner": "Database Lead (role)", "used_by": ["SVC-CBS"]},
+    {"code": "A03", "name": "Core banking database (standby)", "type": "Database", "site": "DR site", "criticality": 5, "owner": "Database Lead (role)", "used_by": ["SVC-CBS"]},
+    {"code": "A04", "name": "Payment switch application", "type": "Application server", "site": "Primary DC", "criticality": 5, "owner": "Payments Platform Lead (role)", "used_by": ["SVC-PAY"]},
+    {"code": "A05", "name": "Payment database", "type": "Database", "site": "Primary DC", "criticality": 5, "owner": "Database Lead (role)", "used_by": ["SVC-PAY"]},
+    {"code": "A06", "name": "Hardware security module pair", "type": "Security system", "site": "Primary DC", "criticality": 5, "owner": "Security Engineering Lead (role)", "used_by": ["SVC-PAY", "SVC-ATM"]},
+    {"code": "A07", "name": "ATM terminal handler", "type": "Application server", "site": "Primary DC", "criticality": 4, "owner": "ATM Channel Lead (role)", "used_by": ["SVC-ATM"]},
+    {"code": "A08", "name": "ATM fleet network links", "type": "Network", "site": "Branches", "criticality": 4, "owner": "Network Lead (role)", "used_by": ["SVC-ATM"]},
+    {"code": "A09", "name": "Core network switches", "type": "Network", "site": "Primary DC", "criticality": 5, "owner": "Network Lead (role)", "used_by": ["SVC-CBS", "SVC-PAY", "SVC-ATM"]},
+    {"code": "A10", "name": "Perimeter firewall pair", "type": "Firewall", "site": "Primary DC", "criticality": 5, "owner": "Network Lead (role)", "used_by": ["SVC-CBS", "SVC-PAY", "SVC-ATM"]},
+    {"code": "A11", "name": "Internal segmentation firewall", "type": "Firewall", "site": "Primary DC", "criticality": 4, "owner": "Network Lead (role)", "used_by": ["SVC-CBS", "SVC-PAY", "SVC-ATM"]},
+    {"code": "A12", "name": "Identity directory", "type": "Identity system", "site": "Primary DC", "criticality": 5, "owner": "Security Engineering Lead (role)", "used_by": ["SVC-CBS", "SVC-PAY", "SVC-ATM"]},
+    {"code": "A13", "name": "Privileged access management server", "type": "Security system", "site": "Primary DC", "criticality": 5, "owner": "Security Engineering Lead (role)", "used_by": ["SVC-CBS", "SVC-PAY", "SVC-ATM"]},
+    {"code": "A14", "name": "Security monitoring platform (SOC)", "type": "Security system", "site": "Primary DC", "criticality": 4, "owner": "SOC Lead (role)", "used_by": ["SVC-CBS", "SVC-PAY", "SVC-ATM"]},
+    {"code": "A15", "name": "Backup server and protected backup vault", "type": "Backup", "site": "DR site", "criticality": 5, "owner": "Infrastructure Lead (role)", "used_by": ["SVC-CBS", "SVC-PAY", "SVC-ATM"]},
+    {"code": "A16", "name": "Primary data centre facility", "type": "Data centre", "site": "Primary DC", "criticality": 5, "owner": "Infrastructure Lead (role)", "used_by": ["SVC-CBS", "SVC-PAY", "SVC-ATM"]},
+    {"code": "A17", "name": "Disaster recovery site", "type": "Data centre", "site": "DR site", "criticality": 5, "owner": "Infrastructure Lead (role)", "used_by": ["SVC-CBS", "SVC-PAY", "SVC-ATM"]},
+    {"code": "A18", "name": "Wide-area carrier A", "type": "Third-party connectivity", "site": "External", "criticality": 4, "owner": "Network Lead (role)", "is_third_party": true, "provider": "Carrier A (fictional)", "used_by": ["SVC-CBS", "SVC-PAY", "SVC-ATM"]},
+    {"code": "A19", "name": "Wide-area carrier B", "type": "Third-party connectivity", "site": "External", "criticality": 4, "owner": "Network Lead (role)", "is_third_party": true, "provider": "Carrier B (fictional)", "used_by": ["SVC-CBS", "SVC-PAY", "SVC-ATM"]},
+    {"code": "A20", "name": "National payment switch connection", "type": "Third-party service", "site": "External", "criticality": 5, "owner": "Payments Platform Lead (role)", "is_third_party": true, "provider": "SwitchCo (fictional)", "used_by": ["SVC-PAY"]}
+  ],
+  "risks": [
+    {"service": "SVC-CBS", "title": "Hardware failure of a core banking server", "category": "Infrastructure failure", "likelihood": 2, "impact": 4, "affects_recovery_environment": false},
+    {"service": "SVC-PAY", "title": "Loss of connectivity to the payment switch", "category": "Third-party dependency", "likelihood": 3, "impact": 4, "affects_recovery_environment": false},
+    {"service": "SVC-ATM", "title": "Outage of ATM network links", "category": "Connectivity", "likelihood": 3, "impact": 3, "affects_recovery_environment": false}
+  ]
+}

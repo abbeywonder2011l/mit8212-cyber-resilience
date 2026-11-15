@@ -1,0 +1,7 @@
+# Serve on this machine only. Without this, Streamlit listens on every network interface.
+[server]
+address = "localhost"
+headless = true
+
+[browser]
+gatherUsageStats = false

@@ -1,0 +1,133 @@
+{
+  "notice": "FICTIONAL DATA. Each profile is the reference state B0 plus the listed changes. See docs/04-synthetic-environment-and-scenarios.md.",
+  "assessment_date": "2026-11-01",
+  "validity_days": 365,
+  "baseline_test_days_ago": 90,
+  "profiles": {
+    "B0": {
+      "title": "B0 Reference state",
+      "description": "Every control at its target grade with evidence; no unresolved dependency. A clean reference for testing, not a claim about real banks."
+    },
+    "SC1": {
+      "title": "SC1 Failure of a primary core banking application server",
+      "description": "Positive path. One ordinary gap that must not block readiness.",
+      "risks": [
+        {"service": "SVC-CBS", "title": "Failure of a primary core banking application server", "category": "Infrastructure failure", "likelihood": 3, "impact": 4, "affects_recovery_environment": false}
+      ],
+      "items": [
+        {"service": "SVC-CBS", "control": "MON-02", "grade": 2, "evidence_reference": "", "evidence_description": "Monitoring of the standby is stated but no evidence is referenced."}
+      ],
+      "exercises": [
+        {"service": "SVC-CBS", "days_ago": 30, "kind": "exercise", "scenario": "Fail-over exercise after loss of one application node", "results": {"default": "yes", "4.1": "na", "4.3": "na"}, "conditions": []}
+      ]
+    },
+    "SC2a": {
+      "title": "SC2 step 1 Loss of connectivity to the payment processor",
+      "description": "The switch connection is a single point of failure and joint recovery is untested.",
+      "service_assets": [
+        {"service": "SVC-PAY", "asset": "A20", "single_point_of_failure": true, "tested_alternative": false, "recovery_coordination_tested": false, "note": "Runs over carrier A only; no joint recovery test with the provider."}
+      ],
+      "items": [
+        {"service": "SVC-PAY", "control": "TPR-03", "grade": 1, "evidence_reference": "", "evidence_date": null, "evidence_description": "Joint recovery test planned but not run."}
+      ]
+    },
+    "SC2b": {
+      "title": "SC2 step 2 Approved risk acceptance for the switch dependency",
+      "description": "As step 1, with an approved, in-date exception recorded against the dependency.",
+      "extends": "SC2a",
+      "exceptions": [
+        {"service": "SVC-PAY", "gate": "G3", "rule": "DR3", "asset": "A20", "description": "Single carrier path to the payment switch accepted until a second path is commissioned.", "owner": "Head of Payments (role)", "treatment": "risk_acceptance", "compensating_control": "Manual settlement procedure with the provider.", "approved_by": "Board Risk Committee (fictional)", "due_in_days": 90, "status": "open"}
+      ]
+    },
+    "SC2c": {
+      "title": "SC2 step 3 The exception passes its due date",
+      "description": "As step 2, but the exception is overdue and no longer waives the gate.",
+      "extends": "SC2a",
+      "exceptions": [
+        {"service": "SVC-PAY", "gate": "G3", "rule": "DR3", "asset": "A20", "description": "Single carrier path to the payment switch accepted until a second path is commissioned.", "owner": "Head of Payments (role)", "treatment": "risk_acceptance", "compensating_control": "Manual settlement procedure with the provider.", "approved_by": "Board Risk Committee (fictional)", "due_in_days": -10, "status": "open"}
+      ]
+    },
+    "SC3": {
+      "title": "SC3 Ransomware affecting payment processing",
+      "description": "Reproduces the hypothetical illustration in Section 4.8.6 of the paper: a vendor account shared with the recovery site and no restoration exercise.",
+      "risks": [
+        {"service": "SVC-PAY", "title": "Ransomware on the payment processing environment", "category": "Cyberattack", "likelihood": 4, "impact": 5, "affects_recovery_environment": true}
+      ],
+      "items": [
+        {"service": "SVC-PAY", "control": "ACC-03", "grade": 1, "evidence_reference": "", "evidence_description": "A vendor support account is valid at both the primary and the recovery site."},
+        {"service": "SVC-PAY", "control": "ACC-04", "grade": 3, "evidence_reference": "", "evidence_description": "Vendor access process stated; no approval or revocation records referenced."},
+        {"service": "SVC-PAY", "control": "BCP-03", "grade": 1, "evidence_reference": "", "evidence_date": null, "evidence_description": "No service-level restoration exercise has been run for payments."}
+      ],
+      "exercises": [
+        {"service": "SVC-PAY", "days_ago": 0, "kind": "incident", "scenario": "Restoration after ransomware; pending items with the switch provider remain unresolved", "results": {"default": "yes", "4.1": "no"},
+         "conditions": [
+           {"text": "Enhanced monitoring of payment processing", "owner": "SOC Lead (role)", "expiry_in_days": 14},
+           {"text": "Manual review of pending items with the switch provider", "owner": "Head of Payments (role)", "expiry_in_days": 7}
+         ]},
+        {"service": "SVC-PAY", "days_ago": 0, "kind": "incident", "scenario": "Variant: the same record with no conditions recorded", "results": {"default": "yes", "4.1": "no"}, "conditions": []}
+      ]
+    },
+    "SC4": {
+      "title": "SC4 Failure of the primary data centre",
+      "description": "Fail-over is tested, but the standby replicates without validation and the recovery site is administered with production credentials.",
+      "risks": [
+        {"service": "SVC-CBS", "title": "Loss of the primary data centre", "category": "Site failure", "likelihood": 2, "impact": 5, "affects_recovery_environment": false}
+      ],
+      "items": [
+        {"service": "SVC-CBS", "control": "RED-03", "grade": 1, "evidence_reference": "", "evidence_description": "Standby replicates from the primary with no delay or validation."},
+        {"service": "SVC-CBS", "control": "ACC-03", "grade": 3, "evidence_reference": "", "evidence_description": "Separation of recovery administration stated; no account list or check referenced."}
+      ]
+    },
+    "SC5": {
+      "title": "SC5 Inadequate backup testing",
+      "description": "The last restoration test is 500 days old and the integrity check is claimed but not evidenced.",
+      "items": [
+        {"service": "SVC-ATM", "control": "BKP-02", "grade": 4, "evidence_days_ago": 500, "evidence_description": "Last restoration test of the ATM terminal handler data."},
+        {"service": "SVC-ATM", "control": "BKP-03", "grade": 3, "evidence_reference": "", "evidence_description": "Integrity check claimed; no record referenced."}
+      ]
+    },
+    "SC5b": {
+      "title": "SC5 variant Validity period of 730 days",
+      "description": "As SC5 with a longer validity period: the old test counts, but the missing integrity evidence still fails the gate.",
+      "extends": "SC5",
+      "validity_days": 730
+    },
+    "DEMO": {
+      "title": "Demonstration profile (mixed)",
+      "description": "Several deficiencies combined so that the screens show a realistic mixture. Not used as a test oracle.",
+      "risks": [
+        {"service": "SVC-CBS", "title": "Loss of the primary data centre", "category": "Site failure", "likelihood": 2, "impact": 5, "affects_recovery_environment": false},
+        {"service": "SVC-PAY", "title": "Ransomware on the payment processing environment", "category": "Cyberattack", "likelihood": 4, "impact": 5, "affects_recovery_environment": true},
+        {"service": "SVC-ATM", "title": "Corrupted ATM journal data after a failed change", "category": "Data integrity", "likelihood": 2, "impact": 3, "affects_recovery_environment": false}
+      ],
+      "service_assets": [
+        {"service": "SVC-PAY", "asset": "A20", "single_point_of_failure": true, "tested_alternative": false, "recovery_coordination_tested": false, "note": "Runs over carrier A only; no joint recovery test with the provider."}
+      ],
+      "items": [
+        {"service": null, "control": "GOV-03", "grade": 2, "evidence_reference": "", "evidence_description": "Exercise results are discussed but no report is referenced."},
+        {"service": "SVC-CBS", "control": "MON-02", "grade": 2, "evidence_reference": "", "evidence_description": "Monitoring of the standby is stated but no evidence is referenced."},
+        {"service": "SVC-CBS", "control": "RED-03", "grade": 2, "evidence_reference": "", "evidence_description": "Independence of the standby is asserted."},
+        {"service": "SVC-CBS", "control": "NET-02", "grade": 3, "evidence_date": null, "evidence_description": "Rule review done; paired test not yet run."},
+        {"service": "SVC-PAY", "control": "ACC-03", "grade": 1, "evidence_reference": "", "evidence_description": "A vendor support account is valid at both sites."},
+        {"service": "SVC-PAY", "control": "BCP-03", "grade": 1, "evidence_reference": "", "evidence_date": null, "evidence_description": "No service-level restoration exercise yet."},
+        {"service": "SVC-PAY", "control": "TPR-03", "grade": 1, "evidence_reference": "", "evidence_date": null, "evidence_description": "Joint recovery test planned."},
+        {"service": "SVC-ATM", "control": "BKP-02", "grade": 4, "evidence_days_ago": 500, "evidence_description": "Last restoration test of the ATM terminal handler data."},
+        {"service": "SVC-ATM", "control": "BKP-03", "grade": 3, "evidence_reference": "", "evidence_description": "Integrity check claimed; no record referenced."},
+        {"service": "SVC-ATM", "control": "INC-03", "grade": 2, "evidence_reference": "", "evidence_date": null, "evidence_description": "Tabletop said to have been held."},
+        {"service": "SVC-ATM", "control": "NET-01", "grade": 1, "evidence_reference": "", "evidence_description": "Segmentation of ATM links is planned."},
+        {"service": "SVC-ATM", "control": "MON-01", "grade": null, "evidence_reference": "", "evidence_description": ""},
+        {"service": "SVC-ATM", "control": "TPR-02", "applicable": false, "na_justification": "ATM links are covered by the group carrier contract assessed under the payments service.", "grade": null, "evidence_reference": ""}
+      ],
+      "exceptions": [
+        {"service": "SVC-PAY", "gate": "G4", "rule": "DR4", "control": "ACC-03", "description": "Shared vendor support account retained until the vendor completes migration.", "owner": "Payments Platform Lead (role)", "treatment": "risk_acceptance", "compensating_control": "Account disabled by default and enabled per session under dual approval.", "approved_by": "CISO (role)", "due_in_days": 60, "status": "open"}
+      ],
+      "exercises": [
+        {"service": "SVC-PAY", "days_ago": 20, "kind": "exercise", "scenario": "Tabletop restoration of payment processing after ransomware", "results": {"default": "yes", "4.1": "no"},
+         "conditions": [
+           {"text": "Enhanced monitoring of payment processing", "owner": "SOC Lead (role)", "expiry_in_days": 14},
+           {"text": "Manual review of pending items with the switch provider", "owner": "Head of Payments (role)", "expiry_in_days": 7}
+         ]}
+      ]
+    }
+  }
+}

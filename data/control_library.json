@@ -1,0 +1,429 @@
+{
+  "library_version": "0.1-draft",
+  "date": "2026-11-14",
+  "note": "Researcher-developed assessment catalogue for an academic prototype. It is not an official control set of the CBN, NIST, ISO or ISACA. Questions, evidence lists, weights and targets are the researcher's own wording and design choices.",
+  "status_codes": {
+    "P": "Read in the primary text on 2026-11-14",
+    "S": "Confirmed from secondary sources only; check against the publisher's text before citing",
+    "U": "From the researcher's knowledge; not yet verified"
+  },
+  "basis_codes": {
+    "Reg": "Applies an identified CBN (2024) requirement",
+    "Std": "Applies published standards or guidance",
+    "Des": "Proposed by this study; no reviewed source specifies it"
+  },
+  "domains": {
+    "GOV": "Security governance",
+    "AST": "Asset visibility",
+    "ACC": "Access management",
+    "NET": "Network segmentation",
+    "RED": "Infrastructure redundancy",
+    "BKP": "Backup and recovery",
+    "MON": "Monitoring and detection",
+    "INC": "Incident response",
+    "BCP": "Business continuity",
+    "TPR": "Third-party risk management"
+  },
+  "references": {
+    "CBN": {
+      "1.1": {"text": "Board oversight of and responsibility for the cybersecurity programme", "status": "P"},
+      "1.1(viii)": {"text": "Quarterly reports to the Board on the status of the cybersecurity programme", "status": "P"},
+      "1.1(xii)": {"text": "Cybersecurity risk appetite defined in the enterprise risk management framework", "status": "P"},
+      "1.1.2": {"text": "Minimum contents of the cybersecurity programme, including incident response planning and a data backup and recovery plan", "status": "P"},
+      "1.3": {"text": "Responsibilities of the Chief Information Security Officer", "status": "P"},
+      "1.4": {"text": "Requirements for appointing the CISO, including the reporting line", "status": "P"},
+      "1.5.1(v)": {"text": "Steering committee recommends the risk acceptance level to the Board", "status": "P"},
+      "2.1.4": {"text": "Risk treatment options; risk acceptance criteria defined and approved by the Board", "status": "P"},
+      "2.2(iii)": {"text": "Penetration test by a third party at least annually", "status": "P"},
+      "2.3(i)": {"text": "Third-party risk management framework covering selection, due diligence, monitoring and incident response", "status": "P"},
+      "2.3(iii)-(v)": {"text": "Contracts carry security measures; third parties are routinely assessed; service agreements give a right to audit", "status": "P"},
+      "2.3(vii)": {"text": "Business continuity response and recovery planning and testing conducted with third-party providers", "status": "P"},
+      "3.3": {"text": "Capability for ongoing (24/7) monitoring to detect anomalies or incidents", "status": "P"},
+      "3.7": {"text": "Participation in industry cyber exercises; avoid creating single points of failure in the industry", "status": "P"},
+      "5.0(i)-(ii)": {"text": "Performance metrics that identify deficiencies, failed controls and progress in resolving issues", "status": "P"},
+      "5.0(v)": {"text": "Cyber incidents reported to the CBN not later than 24 hours after detection", "status": "P"},
+      "6.0(ii)": {"text": "Participation in industry cyber exercises to evaluate preparedness to recover", "status": "P"},
+      "App I": {"text": "Definitions of critical systems and of a cyber-incident", "status": "P"},
+      "App II 1.1(a)-(b)": {"text": "Up-to-date inventory of IT assets; ownership assigned for each asset", "status": "P"},
+      "App II 1.1(c)": {"text": "Devices categorised by the criticality and sensitivity of the information they handle", "status": "P"},
+      "App II 1.1(i)-(k)": {"text": "Network topology diagram; catalogue of network connections to third parties, reviewed regularly", "status": "P"},
+      "App II 1.4(a)-(c)": {"text": "Record of third-party service providers; third-party connections identified, documented and reviewed", "status": "P"},
+      "App II 1.5": {"text": "Privileged employee and service accounts recorded in an access control matrix and reviewed", "status": "P"},
+      "App III 1.1(b)": {"text": "Periodic review of user access against least privilege", "status": "P"},
+      "App III 1.1(d)-(e)": {"text": "Multi-factor authentication and role-based access; critical systems must use multi-factor authentication", "status": "P"},
+      "App III 1.2": {"text": "Privileged access management controls, logging of privileged activity, no shared passwords on default or anonymous privileged accounts", "status": "P"},
+      "App III 1.3(a)-(b)": {"text": "Vendor access is not unfettered; it is approved, limited in scope and duration, monitored and revoked", "status": "P"},
+      "App III 1.5": {"text": "Minimum security baseline configuration and hardening", "status": "P"},
+      "App III 1.6(g)": {"text": "Regular data backup, secure backup storage, and regular testing of restoration", "status": "P"},
+      "App III 2.1(a)": {"text": "Continuous (24x7) monitoring of critical systems, databases and networks", "status": "P"},
+      "App III 2.1(d)": {"text": "Monitoring of the physical environment, including the disaster recovery site", "status": "P"},
+      "App III 2.1(e)": {"text": "Security monitoring through a security operations centre", "status": "P"},
+      "App III 2.1(g)": {"text": "Logging enabled on all systems and applications", "status": "P"},
+      "App III 3(a)": {"text": "Incident response plan and playbooks", "status": "P"},
+      "App III 3(b)-(c)": {"text": "Regular drills and tabletop exercises; outcomes communicated to senior management, who also take part", "status": "P"},
+      "App III 3(i)": {"text": "Backup and recovery mechanisms for critical data; periodic backup restoration tests", "status": "P"},
+      "App III 4(a)": {"text": "Recovery plan, processes and procedures to restore affected systems and assets", "status": "P"},
+      "App III 4(b)": {"text": "Threats verified as addressed before affected systems, data or access are restored", "status": "P"},
+      "App III 4(c)": {"text": "Improvements implemented from lessons learned", "status": "P"}
+    },
+    "CSF": {
+      "GV.OC-04": {"text": "Critical objectives, capabilities, and services that external stakeholders depend on or expect from the organization are understood and communicated", "status": "P"},
+      "GV.OC-05": {"text": "Outcomes, capabilities, and services that the organization depends on are understood and communicated", "status": "P"},
+      "GV.RM-02": {"text": "Risk appetite and risk tolerance statements are established, communicated, and maintained", "status": "P"},
+      "GV.RR-01": {"text": "Organizational leadership is responsible and accountable for cybersecurity risk and fosters a culture that is risk-aware, ethical, and continually improving", "status": "P"},
+      "GV.RR-02": {"text": "Roles, responsibilities, and authorities related to cybersecurity risk management are established, communicated, understood, and enforced", "status": "P"},
+      "GV.OV-03": {"text": "Organizational cybersecurity risk management performance is evaluated and reviewed for adjustments needed", "status": "P"},
+      "GV.SC-04": {"text": "Suppliers are known and prioritized by criticality", "status": "P"},
+      "GV.SC-05": {"text": "Requirements to address cybersecurity risks in supply chains are established, prioritized, and integrated into contracts and other types of agreements with suppliers and other relevant third parties", "status": "P"},
+      "GV.SC-07": {"text": "The risks posed by a supplier, their products and services, and other third parties are understood, recorded, prioritized, assessed, responded to, and monitored over the course of the relationship", "status": "P"},
+      "GV.SC-08": {"text": "Relevant suppliers and other third parties are included in incident planning, response, and recovery activities", "status": "P"},
+      "ID.AM-01": {"text": "Inventories of hardware managed by the organization are maintained", "status": "P"},
+      "ID.AM-02": {"text": "Inventories of software, services, and systems managed by the organization are maintained", "status": "P"},
+      "ID.AM-03": {"text": "Representations of the organization's authorized network communication and internal and external network data flows are maintained", "status": "P"},
+      "ID.AM-04": {"text": "Inventories of services provided by suppliers are maintained", "status": "P"},
+      "ID.AM-05": {"text": "Assets are prioritized based on classification, criticality, resources, and impact on the mission", "status": "P"},
+      "ID.RA-04": {"text": "Potential impacts and likelihoods of threats exploiting vulnerabilities are identified and recorded", "status": "P"},
+      "ID.RA-06": {"text": "Risk responses are chosen, prioritized, planned, tracked, and communicated", "status": "P"},
+      "ID.IM-02": {"text": "Improvements are identified from security tests and exercises, including those done in coordination with suppliers and relevant third parties", "status": "P"},
+      "ID.IM-04": {"text": "Incident response plans and other cybersecurity plans that affect operations are established, communicated, maintained, and improved", "status": "P"},
+      "PR.AA-03": {"text": "Users, services, and hardware are authenticated", "status": "P"},
+      "PR.AA-05": {"text": "Access permissions, entitlements, and authorizations are defined in a policy, managed, enforced, and reviewed, and incorporate the principles of least privilege and separation of duties", "status": "P"},
+      "PR.DS-11": {"text": "Backups of data are created, protected, maintained, and tested", "status": "P"},
+      "PR.PS-04": {"text": "Log records are generated and made available for continuous monitoring", "status": "P"},
+      "PR.IR-01": {"text": "Networks and environments are protected from unauthorized logical access and usage", "status": "P"},
+      "PR.IR-03": {"text": "Mechanisms are implemented to achieve resilience requirements in normal and adverse situations", "status": "P"},
+      "PR.IR-04": {"text": "Adequate resource capacity to ensure availability is maintained", "status": "P"},
+      "DE.CM-01": {"text": "Networks and network services are monitored to find potentially adverse events", "status": "P"},
+      "DE.CM-06": {"text": "External service provider activities and services are monitored to find potentially adverse events", "status": "P"},
+      "DE.CM-09": {"text": "Computing hardware and software, runtime environments, and their data are monitored to find potentially adverse events", "status": "P"},
+      "RS.MA-01": {"text": "The incident response plan is executed in coordination with relevant third parties once an incident is declared", "status": "P"},
+      "RS.MA-05": {"text": "The criteria for initiating incident recovery are applied", "status": "P"},
+      "RS.CO-02": {"text": "Internal and external stakeholders are notified of incidents", "status": "P"},
+      "RC.RP-01": {"text": "The recovery portion of the incident response plan is executed once initiated from the incident response process", "status": "P"},
+      "RC.RP-03": {"text": "The integrity of backups and other restoration assets is verified before using them for restoration", "status": "P"},
+      "RC.RP-05": {"text": "The integrity of restored assets is verified, systems and services are restored, and normal operating status is confirmed", "status": "P"},
+      "RC.RP-06": {"text": "The end of incident recovery is declared based on criteria, and incident-related documentation is completed", "status": "P"}
+    },
+    "ISO27001": {
+      "A.5.2": {"text": "Information security roles and responsibilities", "status": "S"},
+      "A.5.9": {"text": "Inventory of information and other associated assets", "status": "S"},
+      "A.5.18": {"text": "Access rights", "status": "S"},
+      "A.5.19": {"text": "Information security in supplier relationships", "status": "S"},
+      "A.5.20": {"text": "Addressing information security within supplier agreements", "status": "S"},
+      "A.5.22": {"text": "Monitoring, review and change management of supplier services", "status": "S"},
+      "A.5.24": {"text": "Information security incident management planning and preparation", "status": "S"},
+      "A.5.26": {"text": "Response to information security incidents", "status": "S"},
+      "A.5.29": {"text": "Information security during disruption", "status": "S"},
+      "A.5.30": {"text": "ICT readiness for business continuity", "status": "S"},
+      "A.8.2": {"text": "Privileged access rights", "status": "S"},
+      "A.8.5": {"text": "Secure authentication", "status": "S"},
+      "A.8.13": {"text": "Information backup", "status": "S"},
+      "A.8.14": {"text": "Redundancy of information processing facilities", "status": "S"},
+      "A.8.15": {"text": "Logging", "status": "S"},
+      "A.8.16": {"text": "Monitoring activities", "status": "S"},
+      "A.8.20": {"text": "Networks security", "status": "S"},
+      "A.8.22": {"text": "Segregation of networks", "status": "S"}
+    },
+    "ISO22301": {
+      "5": {"text": "Leadership", "status": "S"},
+      "8.2": {"text": "Business impact analysis and risk assessment", "status": "S"},
+      "8.3": {"text": "Business continuity strategies and solutions", "status": "U"},
+      "8.4": {"text": "Business continuity plans and procedures", "status": "S"},
+      "8.5": {"text": "Exercise programme", "status": "S"},
+      "8.6": {"text": "Evaluation of business continuity documentation and capabilities", "status": "S"},
+      "9": {"text": "Performance evaluation", "status": "S"},
+      "10": {"text": "Improvement", "status": "S"}
+    },
+    "COBIT": {
+      "EDM03": {"text": "Ensured Risk Optimization", "status": "U"},
+      "APO10": {"text": "Managed Vendors", "status": "S"},
+      "APO12": {"text": "Managed Risk", "status": "S"},
+      "APO13": {"text": "Managed Security", "status": "S"},
+      "BAI04": {"text": "Managed Availability and Capacity", "status": "U"},
+      "BAI09": {"text": "Managed Assets", "status": "S"},
+      "DSS02": {"text": "Managed Service Requests and Incidents", "status": "U"},
+      "DSS04": {"text": "Managed Continuity", "status": "S"},
+      "DSS05": {"text": "Managed Security Services", "status": "S"},
+      "DSS06": {"text": "Managed Business Process Controls", "status": "U"},
+      "MEA01": {"text": "Managed Performance and Conformance Monitoring", "status": "U"}
+    },
+    "SP80034": {
+      "Step 2": {"text": "Conduct the business impact analysis", "status": "U"},
+      "Step 4": {"text": "Create contingency strategies", "status": "U"},
+      "Step 5": {"text": "Develop an information system contingency plan", "status": "U"},
+      "Step 6": {"text": "Ensure plan testing, training and exercises", "status": "U"}
+    }
+  },
+  "controls": [
+    {
+      "id": "GOV-01", "domain": "GOV", "scope": "organisation", "basis": "Reg", "weight": 1, "target": 3, "rules": [], "gate": null,
+      "title": "Board and CISO accountability for cyber resilience",
+      "question": "Has the Board assigned responsibility for the cybersecurity and resilience programme, and is a CISO in post with the reporting line the CBN requires?",
+      "evidence": ["Board or committee terms of reference", "CISO appointment and reporting line", "Approved cybersecurity strategy or policy"],
+      "refs": {"CBN": ["1.1", "1.3", "1.4"], "CSF": ["GV.RR-01", "GV.RR-02"], "ISO27001": ["A.5.2"], "ISO22301": ["5"], "COBIT": ["EDM03", "APO13"], "SP80034": []},
+      "rationale": "All sources place accountability with leadership. The CBN text is the most specific for Nigerian banks, so it is the primary anchor.",
+      "remediation": "Confirm Board-level ownership of the programme and a CISO appointment that meets the CBN requirements."
+    },
+    {
+      "id": "GOV-02", "domain": "GOV", "scope": "organisation", "basis": "Reg", "weight": 1, "target": 3, "rules": ["DR3", "DR10"], "gate": null,
+      "title": "Board-approved risk appetite and acceptance criteria",
+      "question": "Are risk appetite and risk acceptance criteria approved by the Board and used when a resilience gap is accepted instead of fixed?",
+      "evidence": ["Risk appetite statement", "Board-approved acceptance criteria", "Example of an acceptance decision recorded against the criteria"],
+      "refs": {"CBN": ["2.1.4", "1.1(xii)", "1.5.1(v)"], "CSF": ["GV.RM-02", "ID.RA-06"], "ISO27001": [], "ISO22301": [], "COBIT": ["APO12"], "SP80034": []},
+      "rationale": "Decision rules DR3 and DR10 allow a gap to be accepted only under approved criteria, so the criteria must exist first.",
+      "remediation": "Obtain Board approval of acceptance criteria and apply them to every recorded exception."
+    },
+    {
+      "id": "GOV-03", "domain": "GOV", "scope": "organisation", "basis": "Reg+Des", "weight": 1, "target": 3, "rules": ["DR6", "DR10"], "gate": null,
+      "title": "Reporting of recovery exercise results and open exceptions",
+      "question": "Do senior management and the Board receive the results of recovery exercises and the list of open resilience exceptions?",
+      "evidence": ["Board or committee report showing exercise outcomes", "Exception register extract presented to management"],
+      "refs": {"CBN": ["1.1(viii)", "5.0(i)-(ii)", "App III 3(b)-(c)"], "CSF": ["GV.OV-03", "ID.IM-02"], "ISO27001": [], "ISO22301": ["9"], "COBIT": ["MEA01"], "SP80034": []},
+      "rationale": "The CBN requires drill outcomes to reach senior management and quarterly Board reports. Reporting open exceptions alongside them is this study's addition.",
+      "remediation": "Add exercise outcomes and open exceptions to the regular management and Board reports."
+    },
+    {
+      "id": "AST-01", "domain": "AST", "scope": "service", "basis": "Reg", "weight": 1, "target": 3, "rules": ["DR1"], "gate": null,
+      "title": "Inventory of assets supporting the service",
+      "question": "Is there a current inventory of the assets that deliver this service, each with a named owner?",
+      "evidence": ["Asset inventory extract for the service", "Owner recorded against each asset"],
+      "refs": {"CBN": ["App II 1.1(a)-(b)"], "CSF": ["ID.AM-01", "ID.AM-02"], "ISO27001": ["A.5.9"], "ISO22301": [], "COBIT": ["BAI09"], "SP80034": []},
+      "rationale": "Every source requires an asset inventory. Tying it to a service is what makes it usable for recovery planning.",
+      "remediation": "Complete the asset inventory for the service and assign an owner to each asset."
+    },
+    {
+      "id": "AST-02", "domain": "AST", "scope": "service", "basis": "Reg", "weight": 1, "target": 3, "rules": ["DR1"], "gate": null,
+      "title": "Criticality classification of the service and its assets",
+      "question": "Has the service been classified for criticality, with its critical assets identified?",
+      "evidence": ["Critical services register entry", "Criticality rating and the reason for it"],
+      "refs": {"CBN": ["App I", "App II 1.1(c)"], "CSF": ["ID.AM-05", "GV.OC-04"], "ISO27001": [], "ISO22301": ["8.2"], "COBIT": ["BAI09"], "SP80034": ["Step 2"]},
+      "rationale": "The CBN definition of critical systems supplies the test in DR1. CSF ID.AM-05 states the same outcome.",
+      "remediation": "Classify the service and its assets using the DR1 criterion and record the result."
+    },
+    {
+      "id": "AST-03", "domain": "AST", "scope": "service", "basis": "Reg+Des", "weight": 1, "target": 3, "rules": ["DR3"], "gate": null,
+      "title": "Dependency map for the service",
+      "question": "Are the shared components, network connections and third-party connections this service depends on mapped and reviewed?",
+      "evidence": ["Dependency register or service map", "Network topology diagram", "Catalogue of third-party connections with date of last review"],
+      "refs": {"CBN": ["App II 1.1(i)-(k)", "App II 1.4(a)-(c)"], "CSF": ["ID.AM-03", "ID.AM-04", "GV.OC-05"], "ISO27001": [], "ISO22301": ["8.2"], "COBIT": ["BAI09"], "SP80034": []},
+      "rationale": "The CBN requires a topology diagram and a catalogue of third-party connections. Organising them per service is this study's addition (Finding Two).",
+      "remediation": "Map every shared and external dependency of the service and review the map after significant change."
+    },
+    {
+      "id": "ACC-01", "domain": "ACC", "scope": "service", "basis": "Reg", "weight": 1, "target": 3, "rules": [], "gate": null,
+      "title": "Multi-factor authentication on critical systems",
+      "question": "Do the critical systems of this service require multi-factor authentication?",
+      "evidence": ["Authentication configuration record", "List of systems covered and any exclusions"],
+      "refs": {"CBN": ["App III 1.1(d)-(e)"], "CSF": ["PR.AA-03"], "ISO27001": ["A.8.5"], "ISO22301": [], "COBIT": ["DSS05"], "SP80034": []},
+      "rationale": "A direct CBN requirement for critical systems, matched by CSF and ISO.",
+      "remediation": "Enforce multi-factor authentication on every critical system of the service."
+    },
+    {
+      "id": "ACC-02", "domain": "ACC", "scope": "service", "basis": "Reg", "weight": 2, "target": 3, "rules": ["DR4"], "gate": "G4",
+      "title": "Privileged and service accounts recorded and reviewed",
+      "question": "Are privileged and service accounts with access to the production or recovery environment of this service recorded in an access control matrix and reviewed?",
+      "evidence": ["Access control matrix extract", "Record of the latest review and the changes made"],
+      "refs": {"CBN": ["App II 1.5", "App III 1.1(b)", "App III 1.2"], "CSF": ["PR.AA-05"], "ISO27001": ["A.8.2", "A.5.18"], "ISO22301": [], "COBIT": ["DSS05"], "SP80034": []},
+      "rationale": "Condition (a) of DR4. The CBN access control matrix is the primary anchor.",
+      "remediation": "Record all privileged and service accounts for the service in the access control matrix and review them."
+    },
+    {
+      "id": "ACC-03", "domain": "ACC", "scope": "service", "basis": "Des", "weight": 2, "target": 3, "rules": ["DR4"], "gate": "G4",
+      "title": "Recovery administration separated from production",
+      "question": "Is the recovery environment administered with credentials and tools that are not shared with production?",
+      "evidence": ["List of recovery administration accounts and tools", "Check showing production credentials do not work in the recovery environment", "Any recorded exception with its compensating control"],
+      "refs": {"CBN": [], "CSF": ["PR.AA-05", "PR.IR-01"], "ISO27001": ["A.8.2"], "ISO22301": [], "COBIT": ["DSS05"], "SP80034": []},
+      "rationale": "Condition (b) of DR4, from Findings Three and Five. No CBN requirement was identified in the text read; CSF PR.AA-05 covers separation of duties in general terms only.",
+      "remediation": "Give the recovery environment its own administrative credentials and tools, or record an exception with a compensating control."
+    },
+    {
+      "id": "ACC-04", "domain": "ACC", "scope": "service", "basis": "Reg", "weight": 2, "target": 3, "rules": ["DR4"], "gate": "G4",
+      "title": "Vendor access approved, limited, time-bound and monitored",
+      "question": "Is vendor access to the systems of this service approved, limited in scope and duration, monitored and revoked after use?",
+      "evidence": ["Vendor access approvals", "Session or access logs", "Evidence of revocation after the task"],
+      "refs": {"CBN": ["App III 1.3(a)-(b)"], "CSF": ["PR.AA-05", "DE.CM-06"], "ISO27001": ["A.5.19", "A.8.2"], "ISO22301": [], "COBIT": ["DSS05", "APO10"], "SP80034": []},
+      "rationale": "Condition (c) of DR4. A direct CBN requirement.",
+      "remediation": "Put vendor access under approval, scope and time limits, monitoring and revocation."
+    },
+    {
+      "id": "NET-01", "domain": "NET", "scope": "service", "basis": "Std", "weight": 1, "target": 3, "rules": [], "gate": null,
+      "title": "Network segmentation around the service",
+      "question": "Are the production, recovery, user and third-party network zones of this service separated, with only documented connections allowed between them?",
+      "evidence": ["Network zone design", "Firewall or access rule review", "List of approved connections between zones"],
+      "refs": {"CBN": ["App II 1.1(i)-(k)"], "CSF": ["PR.IR-01"], "ISO27001": ["A.8.22", "A.8.20"], "ISO22301": [], "COBIT": ["DSS05"], "SP80034": []},
+      "rationale": "Segmentation is recommended by CISA et al. (2023) and ISO. The CBN text read requires a topology diagram and connection catalogue but states no explicit segmentation requirement, so the basis is Std, not Reg.",
+      "remediation": "Separate the service's network zones and allow only documented connections between them."
+    },
+    {
+      "id": "NET-02", "domain": "NET", "scope": "service", "basis": "Des", "weight": 1, "target": 4, "rules": [], "gate": null,
+      "title": "Segmentation tested in both directions",
+      "question": "Has a test shown both that an unauthorised path into the service is blocked and that normal transactions still pass?",
+      "evidence": ["Test script and result for the blocked path", "Test result for the normal transaction", "Date of test"],
+      "refs": {"CBN": ["2.2(iii)"], "CSF": ["PR.IR-01", "ID.IM-02"], "ISO27001": ["A.8.22"], "ISO22301": [], "COBIT": ["DSS05"], "SP80034": []},
+      "rationale": "From Finding Five: a restriction that blocks legitimate transactions is also a failure. The paired test is this study's proposal; the CBN penetration test requirement is related but not equivalent.",
+      "remediation": "Run and record a paired test: blocked unauthorised access and an unaffected normal transaction."
+    },
+    {
+      "id": "RED-01", "domain": "RED", "scope": "service", "basis": "Std+Des", "weight": 1, "target": 3, "rules": ["DR3"], "gate": null,
+      "title": "Alternative capacity for critical components",
+      "question": "Does each critical component of this service have an alternative, so that no single point of failure is left untreated?",
+      "evidence": ["Architecture record showing alternatives", "List of single points of failure and their treatment"],
+      "refs": {"CBN": ["3.7"], "CSF": ["PR.IR-03", "PR.IR-04"], "ISO27001": ["A.8.14"], "ISO22301": ["8.3"], "COBIT": ["BAI04", "DSS04"], "SP80034": ["Step 4"]},
+      "rationale": "ISO and CSF address redundancy directly. The CBN text read addresses single points of failure in the industry, not inside a bank, so it is a related reference only.",
+      "remediation": "Provide an alternative for each critical component or record the treatment of the single point of failure."
+    },
+    {
+      "id": "RED-02", "domain": "RED", "scope": "service", "basis": "Std", "weight": 1, "target": 4, "rules": [], "gate": null,
+      "title": "Fail-over demonstrated by test",
+      "question": "Has fail-over to the alternative been tested successfully within the validity period?",
+      "evidence": ["Fail-over test report with date and result", "Comparison of achieved time against the approved RTO"],
+      "refs": {"CBN": ["2.3(vii)"], "CSF": ["PR.IR-03", "ID.IM-02"], "ISO27001": ["A.5.30"], "ISO22301": ["8.5"], "COBIT": ["DSS04"], "SP80034": ["Step 6"]},
+      "rationale": "Finding Four: an alternative that has not been exercised is unproven.",
+      "remediation": "Test fail-over and record the result against the approved recovery time objective."
+    },
+    {
+      "id": "RED-03", "domain": "RED", "scope": "service", "basis": "Des", "weight": 1, "target": 3, "rules": [], "gate": null,
+      "title": "Alternative is independent of the compromise",
+      "question": "Would the alternative remain trustworthy if the primary were compromised, for example by unwanted changes replicating or by a shared administrative element?",
+      "evidence": ["Analysis of what the primary and the alternative share", "Replication design showing how corrupted data is prevented from propagating unchecked"],
+      "refs": {"CBN": [], "CSF": ["PR.IR-03"], "ISO27001": ["A.8.14"], "ISO22301": [], "COBIT": ["DSS04"], "SP80034": []},
+      "rationale": "Finding Three, drawing on Ross et al. (2021). No reviewed source states it as a testable requirement.",
+      "remediation": "Identify what the primary and the alternative share and remove or control each shared element."
+    },
+    {
+      "id": "BKP-01", "domain": "BKP", "scope": "service", "basis": "Reg+Std+Des", "weight": 2, "target": 3, "rules": ["DR5"], "gate": "G5",
+      "title": "Protected backup copy",
+      "question": "Is a backup of this service's data held in a copy that production administrators cannot alter or delete?",
+      "evidence": ["Backup architecture record", "Access list for the protected copy", "Configuration showing offline or immutable storage"],
+      "refs": {"CBN": ["App III 1.6(g)"], "CSF": ["PR.DS-11"], "ISO27001": ["A.8.13"], "ISO22301": [], "COBIT": ["DSS04"], "SP80034": ["Step 4"]},
+      "rationale": "Condition (a) of DR5. The CBN requires secure backup storage; CISA et al. (2023) recommend offline copies; protection from production administrators is this study's criterion.",
+      "remediation": "Hold a backup copy that production administrators cannot alter or delete."
+    },
+    {
+      "id": "BKP-02", "domain": "BKP", "scope": "service", "basis": "Reg", "weight": 2, "target": 4, "rules": ["DR5"], "gate": "G5",
+      "title": "Restoration tested within the validity period",
+      "question": "Has restoration of this service's data from backup been tested successfully within the validity period?",
+      "evidence": ["Restoration test report with date and result", "Data set restored and time taken"],
+      "refs": {"CBN": ["App III 1.6(g)", "App III 3(i)"], "CSF": ["PR.DS-11"], "ISO27001": ["A.8.13"], "ISO22301": ["8.5"], "COBIT": ["DSS04"], "SP80034": ["Step 6"]},
+      "rationale": "Condition (b) of DR5. A direct CBN requirement; the validity period is set by the bank.",
+      "remediation": "Run a restoration test for the service's data and record the date and result."
+    },
+    {
+      "id": "BKP-03", "domain": "BKP", "scope": "service", "basis": "Std+Des", "weight": 2, "target": 3, "rules": ["DR5", "DR7"], "gate": "G5",
+      "title": "Clean recovery point identified",
+      "question": "Is the recovery point checked for integrity and for indicators of compromise, and is the clean recovery point identified and recorded?",
+      "evidence": ["Integrity check record", "Scan result for indicators of compromise", "Record naming the clean recovery point"],
+      "refs": {"CBN": ["App III 4(b)"], "CSF": ["RC.RP-03"], "ISO27001": ["A.8.13"], "ISO22301": [], "COBIT": ["DSS04"], "SP80034": []},
+      "rationale": "Condition (c) of DR5. CSF RC.RP-03 states the outcome; the CBN verify-before-restore requirement concerns the threat, not the data, so it is related only.",
+      "remediation": "Check recovery points for integrity and compromise and record which one is clean."
+    },
+    {
+      "id": "MON-01", "domain": "MON", "scope": "service", "basis": "Reg", "weight": 1, "target": 3, "rules": [], "gate": null,
+      "title": "Logging on systems supporting the service",
+      "question": "Is logging enabled on the systems of this service, including the activity of privileged users?",
+      "evidence": ["Logging configuration record", "Sample of privileged activity logs", "Log retention setting"],
+      "refs": {"CBN": ["App III 2.1(g)", "App III 1.2"], "CSF": ["PR.PS-04"], "ISO27001": ["A.8.15"], "ISO22301": [], "COBIT": ["DSS05"], "SP80034": []},
+      "rationale": "A direct CBN requirement, matched by CSF and ISO.",
+      "remediation": "Enable logging, including privileged activity, on every system of the service."
+    },
+    {
+      "id": "MON-02", "domain": "MON", "scope": "service", "basis": "Reg+Des", "weight": 1, "target": 3, "rules": [], "gate": null,
+      "title": "Continuous monitoring covers production and recovery",
+      "question": "Does continuous monitoring through a security operations centre cover this service's systems in both the production and the recovery environment?",
+      "evidence": ["Monitoring coverage list", "Sample alerts for the service", "Evidence that recovery-environment sources are onboarded"],
+      "refs": {"CBN": ["3.3", "App III 2.1(a)", "App III 2.1(d)", "App III 2.1(e)"], "CSF": ["DE.CM-01", "DE.CM-09"], "ISO27001": ["A.8.16"], "ISO22301": [], "COBIT": ["DSS05"], "SP80034": []},
+      "rationale": "The CBN requires 24x7 monitoring through a SOC. Asking explicitly about the recovery environment is this study's addition.",
+      "remediation": "Extend monitoring coverage to every system of the service, including the recovery environment."
+    },
+    {
+      "id": "INC-01", "domain": "INC", "scope": "service", "basis": "Reg", "weight": 2, "target": 3, "rules": ["DR6", "DR7"], "gate": null,
+      "title": "Incident response plan with criteria for moving to recovery",
+      "question": "Does an incident response plan or playbook cover this service and state that threats must be verified as addressed before systems, data or access are restored?",
+      "evidence": ["Incident response plan or playbook for the service", "The section stating the criteria for moving to recovery"],
+      "refs": {"CBN": ["App III 3(a)", "App III 4(b)"], "CSF": ["ID.IM-04", "RS.MA-01", "RS.MA-05"], "ISO27001": ["A.5.24", "A.5.26"], "ISO22301": [], "COBIT": ["DSS02"], "SP80034": []},
+      "rationale": "A direct CBN requirement and the documentary basis of DR7.",
+      "remediation": "Write or update the playbook for the service and include the verify-before-restore criteria."
+    },
+    {
+      "id": "INC-02", "domain": "INC", "scope": "service", "basis": "Reg+Des", "weight": 2, "target": 3, "rules": ["DR6"], "gate": "G6",
+      "title": "Notification workflow documented",
+      "question": "Is there a documented workflow for the external notifications an incident affecting this service may require, with triggers, recipients and time limits?",
+      "evidence": ["Notification workflow", "Named role responsible for each notification", "Contact details and templates"],
+      "refs": {"CBN": ["5.0(v)"], "CSF": ["RS.CO-02"], "ISO27001": ["A.5.24"], "ISO22301": ["8.4"], "COBIT": ["DSS02"], "SP80034": []},
+      "rationale": "The CBN 24-hour duty is read from the framework text. The data protection and national CERT duties are taken from Table 1.1 of the paper and were not re-read here. Combining them into one workflow is this study's proposal.",
+      "remediation": "Document the notification workflow with triggers, recipients, time limits and owners."
+    },
+    {
+      "id": "INC-03", "domain": "INC", "scope": "service", "basis": "Reg", "weight": 1, "target": 4, "rules": [], "gate": null,
+      "title": "Incident response exercised",
+      "question": "Has incident response for this service been exercised by a drill or tabletop within the validity period, with the outcome reported to senior management?",
+      "evidence": ["Exercise report with date", "Record of the report to senior management", "Changes made to the plan afterwards"],
+      "refs": {"CBN": ["App III 3(b)-(c)", "3.7", "6.0(ii)"], "CSF": ["ID.IM-02"], "ISO27001": ["A.5.24"], "ISO22301": ["8.5"], "COBIT": ["DSS02"], "SP80034": ["Step 6"]},
+      "rationale": "A direct CBN requirement.",
+      "remediation": "Run a drill or tabletop exercise for the service and report the outcome to senior management."
+    },
+    {
+      "id": "BCP-01", "domain": "BCP", "scope": "service", "basis": "Std+Des", "weight": 2, "target": 3, "rules": ["DR2"], "gate": "G2",
+      "title": "Approved recovery requirements from business impact analysis",
+      "question": "Are the maximum tolerable downtime, RTO and RPO for this service derived from a business impact analysis and approved in writing by the business owner and the risk function?",
+      "evidence": ["Business impact analysis for the service", "Written approval of the recovery requirements", "Date of last review"],
+      "refs": {"CBN": [], "CSF": ["GV.OC-04", "ID.RA-04"], "ISO27001": ["A.5.30"], "ISO22301": ["8.2"], "COBIT": ["DSS04"], "SP80034": ["Step 2"]},
+      "rationale": "DR2. The CBN text read does not mention recovery time or recovery point objectives, so the basis is NIST SP 800-34 and ISO 22301; the approval roles are this study's proposal.",
+      "remediation": "Complete the business impact analysis and obtain written approval of the recovery requirements."
+    },
+    {
+      "id": "BCP-02", "domain": "BCP", "scope": "service", "basis": "Reg", "weight": 2, "target": 3, "rules": ["DR6"], "gate": "G6",
+      "title": "Service recovery plan documented",
+      "question": "Is there a documented recovery plan for this service, including coordination with its providers?",
+      "evidence": ["Service recovery plan", "Provider contact and coordination steps", "Date of last update"],
+      "refs": {"CBN": ["App III 4(a)", "1.1.2"], "CSF": ["RC.RP-01", "ID.IM-04"], "ISO27001": ["A.5.29", "A.5.30"], "ISO22301": ["8.4"], "COBIT": ["DSS04"], "SP80034": ["Step 5"]},
+      "rationale": "A direct CBN requirement and a condition of DR6.",
+      "remediation": "Document the recovery plan for the service, including provider coordination."
+    },
+    {
+      "id": "BCP-03", "domain": "BCP", "scope": "service", "basis": "Reg+Des", "weight": 2, "target": 4, "rules": ["DR6"], "gate": "G6",
+      "title": "Service-level restoration exercise completed",
+      "question": "Has a restoration exercise for the whole service, not only its systems, been completed within the validity period and its outcome reported to senior management?",
+      "evidence": ["Exercise report with date, scope and result", "Record of the report to senior management", "Completed resumption checklist (Tool 2) if used"],
+      "refs": {"CBN": ["App III 3(b)-(c)", "2.3(vii)", "3.7"], "CSF": ["ID.IM-02", "RC.RP-05"], "ISO27001": ["A.5.30"], "ISO22301": ["8.5", "8.6"], "COBIT": ["DSS04"], "SP80034": ["Step 6"]},
+      "rationale": "A condition of DR6. The CBN requires drills and recovery testing; requiring the exercise at the level of the whole service is this study's criterion (Finding Four).",
+      "remediation": "Run a restoration exercise for the whole service and report the outcome."
+    },
+    {
+      "id": "BCP-04", "domain": "BCP", "scope": "service", "basis": "Des", "weight": 2, "target": 3, "rules": ["DR8", "DR9"], "gate": null,
+      "title": "Transaction reconciliation as a condition of resumption",
+      "question": "Is there a defined procedure to reconcile this service's transactions after restoration, and is its completion a condition of resuming the service?",
+      "evidence": ["Reconciliation procedure for the service", "Named approvers for resumption", "Tolerance for unresolved differences"],
+      "refs": {"CBN": [], "CSF": ["RC.RP-05", "RC.RP-06"], "ISO27001": [], "ISO22301": [], "COBIT": ["DSS06"], "SP80034": []},
+      "rationale": "DR8 and DR9, from Finding Four. No reviewed source specifies service-level reconciliation checks. CSF RC.RP-05 covers the integrity of restored assets in general terms.",
+      "remediation": "Define the reconciliation procedure and make its completion a condition of resumption."
+    },
+    {
+      "id": "TPR-01", "domain": "TPR", "scope": "service", "basis": "Reg", "weight": 1, "target": 3, "rules": ["DR3"], "gate": null,
+      "title": "Register of providers and connections for the service",
+      "question": "Is there a current record of the third-party providers and connections this service relies on, with their criticality?",
+      "evidence": ["Provider register extract", "Criticality of each provider", "Date of last review"],
+      "refs": {"CBN": ["App II 1.4(a)-(c)", "2.3(i)"], "CSF": ["GV.SC-04", "ID.AM-04"], "ISO27001": ["A.5.19"], "ISO22301": [], "COBIT": ["APO10"], "SP80034": []},
+      "rationale": "A direct CBN requirement, matched by CSF GV.SC-04.",
+      "remediation": "Record every provider and connection the service relies on and rate its criticality."
+    },
+    {
+      "id": "TPR-02", "domain": "TPR", "scope": "service", "basis": "Reg", "weight": 1, "target": 3, "rules": [], "gate": null,
+      "title": "Provider contracts and periodic assessment",
+      "question": "Do contracts with this service's critical providers include security and recovery obligations and a right to audit, and are the providers assessed periodically?",
+      "evidence": ["Contract or service agreement clauses", "Latest provider assessment or audit report"],
+      "refs": {"CBN": ["2.3(iii)-(v)"], "CSF": ["GV.SC-05", "GV.SC-07"], "ISO27001": ["A.5.20", "A.5.22"], "ISO22301": [], "COBIT": ["APO10"], "SP80034": []},
+      "rationale": "A direct CBN requirement, matched by CSF and ISO.",
+      "remediation": "Add security, recovery and audit clauses to provider contracts and assess providers periodically."
+    },
+    {
+      "id": "TPR-03", "domain": "TPR", "scope": "service", "basis": "Reg", "weight": 1, "target": 4, "rules": ["DR3", "DR6"], "gate": null,
+      "title": "Recovery coordination tested with critical providers",
+      "question": "Has recovery been tested jointly with this service's critical providers within the validity period?",
+      "evidence": ["Joint exercise report with date and result", "Provider participation record", "Follow-up actions"],
+      "refs": {"CBN": ["2.3(vii)"], "CSF": ["GV.SC-08", "ID.IM-02"], "ISO27001": ["A.5.22"], "ISO22301": ["8.5"], "COBIT": ["APO10", "DSS04"], "SP80034": ["Step 6"]},
+      "rationale": "A direct CBN requirement. It also feeds the DR3 test for an unresolved provider dependency.",
+      "remediation": "Run a joint recovery test with each critical provider and record the result."
+    }
+  ]
+}
