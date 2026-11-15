@@ -23,9 +23,17 @@ from . import models as m
 # --- engine and sessions -------------------------------------------------
 
 def make_engine(db_path: str | Path) -> Engine:
-    """Create the engine and any missing tables. Use ':memory:' for tests."""
-    url = "sqlite://" if str(db_path) == ":memory:" else f"sqlite:///{Path(db_path).as_posix()}"
-    engine = create_engine(url)
+    """Create the engine and any missing tables. Accept SQLite paths or PostgreSQL URLs."""
+    target = str(db_path)
+    if target == ":memory:":
+        url = "sqlite://"
+    elif target.startswith(("postgres://", "postgresql://", "postgresql+psycopg://")):
+        url = target.replace("postgres://", "postgresql://", 1)
+        if url.startswith("postgresql://"):
+            url = url.replace("postgresql://", "postgresql+psycopg://", 1)
+    else:
+        url = f"sqlite:///{Path(target).as_posix()}"
+    engine = create_engine(url, pool_pre_ping=True)
     m.Base.metadata.create_all(engine)
     return engine
 

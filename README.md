@@ -24,7 +24,9 @@ python -m venv .venv
 
 On first run the database (`data/bcr.sqlite3`) is created and the demonstration profile is loaded.
 Other profiles (B0, SC1 to SC5) can be loaded from the "Data and setup" page.
-Set the environment variable `BCR_DB` to use a different database file.
+Set `DATABASE_URL` to use PostgreSQL (for example, Neon); the app reads it from `.env`, `.env.local`,
+the process environment, or Streamlit secrets. This takes precedence over `BCR_DB`, which selects a
+SQLite database file. Keep database URLs in ignored env files or deployment secrets, never in Git.
 
 ## Share a temporary preview with Cloudflare Tunnel
 

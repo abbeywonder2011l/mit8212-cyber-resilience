@@ -13,7 +13,12 @@ ROOT = Path(__file__).resolve().parent.parent
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
+from dotenv import load_dotenv  # noqa: E402
 import streamlit as st  # noqa: E402
+from streamlit.errors import StreamlitSecretNotFoundError  # noqa: E402
+
+for env_file in (".env", ".env.local"):
+    load_dotenv(ROOT / env_file)
 
 from app.common import FICTIONAL, Ctx, show_flash  # noqa: E402
 from app.views import assess, outputs, registers  # noqa: E402
@@ -40,9 +45,21 @@ PAGES = {
 
 
 @st.cache_resource
-def get_engine(db_path: str):
-    Path(db_path).parent.mkdir(parents=True, exist_ok=True)
-    return repo.make_engine(db_path)
+def get_engine(db_target: str):
+    if not db_target.startswith(("postgres://", "postgresql://", "postgresql+psycopg://")):
+        Path(db_target).parent.mkdir(parents=True, exist_ok=True)
+    return repo.make_engine(db_target)
+
+
+def database_target() -> str:
+    """Prefer Neon/PostgreSQL secrets; retain the local SQLite default."""
+    target = os.environ.get("DATABASE_URL") or os.environ.get("NEON_DATABASE_URL")
+    if not target:
+        try:
+            target = st.secrets.get("DATABASE_URL") or st.secrets.get("NEON_DATABASE_URL")
+        except StreamlitSecretNotFoundError:
+            target = None
+    return target or os.environ.get("BCR_DB", str(ROOT / "data" / "bcr.sqlite3"))
 
 
 @st.cache_resource
@@ -60,8 +77,7 @@ def main() -> None:
             st.write(f"- {error}")
         st.stop()
 
-    db_path = os.environ.get("BCR_DB", str(ROOT / "data" / "bcr.sqlite3"))
-    engine = get_engine(db_path)
+    engine = get_engine(database_target())
     Session = repo.make_session_factory(engine)
 
     with Session() as probe:
