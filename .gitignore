@@ -8,3 +8,8 @@ exports/
 .env
 .env.*
 .neon
+
+.agents/
+.codex/
+.claude/
+skills-lock.json
