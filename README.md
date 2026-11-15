@@ -3,6 +3,9 @@
 Academic proof of concept for the MIT 8212 seminar (Miva Open University). **All data is fictional.**
 "Bank X" is not a real bank. This is not a compliance assessment product.
 
+
+Live demo: https://mit8212-cyber-resilience.streamlit.app/
+
 ## Setup (Windows, Python 3.14)
 
 ```
